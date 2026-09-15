@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 import './index.css';
 
 function App() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef(null);
   const [isStreaming, setIsStreaming] = useState(false);
 
   const startCamera = async () => {
     try {
       const constraints = { video: true, audio: true };
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
-            if (videoRef.current) {
+      if (videoRef.current) {
         videoRef.current.srcObject = stream;
         setIsStreaming(true);
       }
